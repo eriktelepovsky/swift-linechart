@@ -371,10 +371,10 @@ public class LineChart: UIView {
     
     
     /**
-     * Get maximum value in all arrays in data store.
-     */
+    * Get minimum value in all arrays in data store.
+    */
     private func getMinimumValue() -> CGFloat {
-        var min: CGFloat = 0
+        var min: CGFloat = getMaximumValue()
         for data in dataStore {
             var newMin = minElement(data)
             if newMin < min {
