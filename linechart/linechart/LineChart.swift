@@ -341,7 +341,7 @@ public class LineChart: UIView {
         var path = UIBezierPath()
         // draw x-axis
         x.axis.color.setStroke()
-        var y0 = height - self.y.scale(0) - y.axis.inset
+        var y0 = height - max(self.y.scale(0), 0) - y.axis.inset
         path.moveToPoint(CGPoint(x: x.axis.inset, y: y0))
         path.addLineToPoint(CGPoint(x: width - x.axis.inset, y: y0))
         path.stroke()
@@ -436,7 +436,7 @@ public class LineChart: UIView {
         
         colors[lineIndex].colorWithAlphaComponent(0.2).setFill()
         // move to origin
-        path.moveToPoint(CGPoint(x: x.axis.inset, y: self.bounds.height - self.y.scale(0) - y.axis.inset))
+        path.moveToPoint(CGPoint(x: x.axis.inset, y: self.bounds.height - max(self.y.scale(0), 0) - y.axis.inset))
         // add line to first data point
         path.addLineToPoint(CGPoint(x: x.axis.inset, y: self.bounds.height - self.y.scale(data[0]) - y.axis.inset))
         // draw whole line chart
@@ -446,9 +446,9 @@ public class LineChart: UIView {
             path.addLineToPoint(CGPoint(x: x1, y: y1))
         }
         // move down to x axis
-        path.addLineToPoint(CGPoint(x: self.x.scale(CGFloat(data.count - 1)) + x.axis.inset, y: self.bounds.height - self.y.scale(0) - y.axis.inset))
+        path.addLineToPoint(CGPoint(x: self.x.scale(CGFloat(data.count - 1)) + x.axis.inset, y: self.bounds.height - max(self.y.scale(0), 0) - y.axis.inset))
         // move to origin
-        path.addLineToPoint(CGPoint(x: x.axis.inset, y: self.bounds.height - self.y.scale(0) - y.axis.inset))
+        path.addLineToPoint(CGPoint(x: x.axis.inset, y: self.bounds.height - max(self.y.scale(0), 0) - y.axis.inset))
         path.fill()
     }
     
